@@ -1,0 +1,69 @@
+<!DOCTYPE struts PUBLIC
+     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+     "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<include file="struts-default.xml" />
+	<package name="default" extends="struts-default">
+	<!-- action -->
+		<!-- 用户注册 -->
+		<action name="user_register" class="userAction" method="register">
+			<result name="success">/user_register_success.jsp</result>
+		</action>
+		<!-- 用户删除 -->
+		<action name="user_delete" class="userAction" method="delete">
+			<result name="success">/user_delete_success.jsp</result>
+		</action>
+		<!-- 用户更新 -->
+		<action name="user_update" class="userAction" method="update">
+			<result name="success">/user_update_success.jsp</result>
+		</action>
+		<!-- 用户登录 -->
+		<action name="user_login" class="userAction" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="error">/user_login.jsp</result>
+		</action>
+		<!-- 用户注销 -->
+		<action name="logout" class="userAction" method="logout">
+			<result name="success">/index.jsp</result>
+		</action>
+		<!-- 添加图书 -->
+		<action name="book_add" class="bookAction" method="add">
+			<result name="success">/book_add_success.jsp</result>
+		</action>
+		<!-- 删除图书 -->
+		<action name="book_delete" class="bookAction" method="delete">
+			<result name="success">/book_delete_success.jsp</result>
+		</action>
+		<!-- 更新图书 -->
+		<action name="book_update" class="bookAction" method="update">
+			<result name="success">/book_update_success.jsp</result>
+		</action>
+		<!-- 图书搜索 -->
+		<action name="book_search" class="bookAction" method="search">
+			<result name="success">/book_search.jsp</result>
+		</action>
+		<!-- 浏览图书页面 -->
+		<action name="browseBookPaging" class="bookAction" method="browseBookPaging">
+			<result name="success">/book_search.jsp</result>
+		</action>
+		<!-- 添加图书到购物车 -->
+		<action name="addToCart" class="orderAction" method="addToCart">
+			<result name="success">/cart_add_success.jsp</result>
+		</action>
+		<!-- 更新购物车 -->
+		<action name="updateCart" class="orderAction" method="updateCart">
+			<result name="success">/cart_show.jsp</result>
+		</action>
+		<!-- 结算 -->
+		<action name="checkout" class="orderAction" method="checkout">
+			<result name="success">/order_success.jsp</result>
+			<result name="error">/user_login.jsp</result>
+		</action>
+		<!-- 订单展示 -->
+		<action name="viewOrders" class="orderAction" method="viewOrders">
+			<result name="success">/order_show.jsp</result>
+			<result name="error">/user_login.jsp</result>
+		</action>
+	</package>
+</struts>

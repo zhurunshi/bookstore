@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pers.rush.bookstore.vo">
+    <class name="Book">
+        <id name="bookid" type="java.lang.Integer">
+			<column name="bookid" />
+			<generator class="identity" />
+		</id>
+		<property name="bookname" type="java.lang.String">
+			<column name="bookname" length="20" />
+		</property>
+		<property name="price" type="java.lang.Double">
+			<column name="price" />
+		</property>
+		<property name="picture" type="java.lang.String">
+			<column name="picture" length="30" />
+		</property>
+    </class>
+</hibernate-mapping>

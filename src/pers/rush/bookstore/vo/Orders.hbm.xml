@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pers.rush.bookstore.vo">
+	<class name="Orders">
+		<id name="orderid" type="java.lang.Integer">
+			<column name="orderid" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="user" class="pers.rush.bookstore.vo.User" fetch="select">
+			<column name="user"/>
+		</many-to-one>
+		<property name="orderdate" type="java.util.Date">
+			<column name="orderdate" length="0" />
+		</property>
+       </class>
+</hibernate-mapping>
