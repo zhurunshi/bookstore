@@ -17,7 +17,6 @@ private static IBookService ibookService;
 			ApplicationContext act = new ClassPathXmlApplicationContext("beans.xml");
 			ibookService = (IBookService)act.getBean("bookService");
 		} catch (RuntimeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

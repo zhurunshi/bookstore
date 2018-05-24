@@ -15,7 +15,7 @@ import pers.rush.bookstore.vo.Orderitem;
 import pers.rush.bookstore.vo.Orders;
 import pers.rush.bookstore.vo.User;
 
-public class OrderAction {
+public class OrderAction extends ActionSupport {
 	protected int bookid;
 	protected int quantity;
 	protected Orders order;
@@ -56,26 +56,26 @@ public class OrderAction {
 		Orderitem orderitem = new Orderitem();
 		orderitem.setBook(book);
 		orderitem.setQuantity(quantity);
-		Map session = ActionContext.getContext().getSession();
+		Map<String, Object> session = ActionContext.getContext().getSession();
 		Cart cart = (Cart) session.get("cart");
 		if (cart == null) {
 			cart = new Cart();
 		}
 		cart.addBook(bookid, orderitem);
 		session.put("cart", cart);
-		return "success";
+		return SUCCESS;
 	}
 	public String updateCart() throws Exception { //更新购物车
-		Map session = ActionContext.getContext().getSession();
+		Map<String, Object> session = ActionContext.getContext().getSession();
 		Cart cart = (Cart) session.get("cart");
 		//直接调用购物车模型中的方法实现修改图书数量
 		cart.updateCart(bookid, this.getQuantity());
 		System.out.println(this.getQuantity());
 		session.put("cart", cart);
-		return "success";
+		return SUCCESS;
 	}
 	public String checkout() throws Exception { //结算
-		Map session = ActionContext.getContext().getSession();
+		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		Cart cart = (Cart) session.get("cart");
 		if (user == null || cart == null)
@@ -83,24 +83,24 @@ public class OrderAction {
 		Orders order = new Orders();
 		order.setOrderdate(new Date());
 		order.setUser(user);
-		for (Iterator it = cart.getItems().values().iterator(); it.hasNext();) {
+		for (Iterator<Orderitem> it = cart.getItems().values().iterator(); it.hasNext();) {
 			Orderitem orderitem = (Orderitem) it.next();
 			orderitem.setOrders(order);
 			order.getOrderitems().add(orderitem);
 		}
 		orderService.saveOrder(order);
-		Map Session = ActionContext.getContext().getSession();
+		Map<String, Object> Session = ActionContext.getContext().getSession();
 		Session.put("orders", order);
-		Map request = (Map) ActionContext.getContext().get("request");
+		Map<String, Object> request = (Map) ActionContext.getContext().get("request");
 		request.put("order", order);
-		return "success";
+		return SUCCESS;
 	}
 	public String viewOrders()throws Exception { //展示订单
-		Map Session = ActionContext.getContext().getSession();
+		Map<String, Object> Session = ActionContext.getContext().getSession();
 		Orders order = (Orders) Session.get("orders");
-		Map request = (Map) ActionContext.getContext().get("request");
+		Map<String, Object> request = (Map) ActionContext.getContext().get("request");
 		request.put("order", order);
 		System.out.println(order.getOrderdate());
-		return "success";
+		return SUCCESS;
 	}
 }

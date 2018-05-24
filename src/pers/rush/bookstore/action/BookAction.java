@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import pers.rush.bookstore.service.IBookService;
 import pers.rush.bookstore.vo.Book;
 
-public class BookAction {
+public class BookAction extends ActionSupport {
 	private String bookname;
 	protected Book book;
 	protected IBookService bookService;
@@ -39,11 +39,11 @@ public class BookAction {
 		book1.setPrice(book.getPrice());
 		book1.setPicture(book.getPicture());
 		bookService.saveBook(book1);
-		return "success";
+		return SUCCESS;
 	}
 	public String delete() throws Exception{
 		bookService.deleteBook(book.getBookid());
-		return "success";
+		return SUCCESS;
 	}
 	public String update() throws Exception{
 		Integer tmpBookid=book.getBookid();
@@ -55,19 +55,19 @@ public class BookAction {
 		book.setPrice(tmpPrice);
 		book.setPicture(tmpPicture);
 		bookService.updateBook(book);
-		return "success";
+		return SUCCESS;
 	}
 	public String search() throws Exception {
-		List books = bookService.getRequiredBookByName(this.getBookname());
-		Map request = (Map) ActionContext.getContext().get("request");
+		List<Book> books = bookService.getRequiredBookByName(this.getBookname());
+		Map<String, Object> request = (Map) ActionContext.getContext().get("request");
 		System.out.println(bookname);
 		request.put("books", books);
-		return "success";
+		return SUCCESS;
 	}
 	public String browseBookPaging() throws Exception {
-		List books = bookService.getRequiredBookByName(this.getBookname());
-		Map request = (Map) ActionContext.getContext().get("request");
+		List<Book> books = bookService.getRequiredBookByName(this.getBookname());
+		Map<String, Object> request = (Map) ActionContext.getContext().get("request");
 		request.put("books", books);
-		return "success";
+		return SUCCESS;
 	}
 }

@@ -6,10 +6,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import pers.rush.bookstore.service.IUserService;
-import pers.rush.bookstore.tool.Cart;
 import pers.rush.bookstore.vo.User;
 
-public class UserAction extends ActionSupport{
+public class UserAction extends ActionSupport {
 	protected User user;
 	protected IUserService userService;
 	public User getUser() {
@@ -48,7 +47,7 @@ public class UserAction extends ActionSupport{
 	public String login() throws Exception{
 		User u=userService.validateUser(user.getUsername(), user.getPassword());
 		if(u!=null){
-			Map session = ActionContext.getContext().getSession();
+			Map<String, Object> session = ActionContext.getContext().getSession();
 			session.put("user", u);
 			return SUCCESS;
 		} 
@@ -57,7 +56,7 @@ public class UserAction extends ActionSupport{
 		}
 	}
 	public String logout() throws Exception {
-		Map session = ActionContext.getContext().getSession();
+		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.remove("user");
 		session.remove("cart");
 		return SUCCESS;

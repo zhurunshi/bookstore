@@ -30,7 +30,7 @@ public class BookService implements IBookService{
 	public Book findBook(Integer bookid) {
 		return bookDAO.findBook(bookid);
 	}
-	public List<?> getRequiredBookByName(String name) {
+	public List<Book> getRequiredBookByName(String name) {
 		return bookDAO.getRequiredBookByName(name);
 	}
 	public Book getBookById(Integer bookid) {

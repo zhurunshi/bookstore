@@ -8,7 +8,7 @@ public class Orders {
 	private Integer orderid;
 	private User user;
 	private Date orderdate;
-	private Set orderitems = new HashSet();
+	private Set<Orderitem> orderitems = new HashSet<>();
 	//构造方法
 	public Orders(){}
 	public Orders(Integer orderid,User user,Date orderdate){
@@ -34,10 +34,10 @@ public class Orders {
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
-	public Set getOrderitems() {
+	public Set<Orderitem> getOrderitems() {
 		return orderitems;
 	}
-	public void setOrderitems(Set orderitems) {
+	public void setOrderitems(Set<Orderitem> orderitems) {
 		this.orderitems = orderitems;
 	}
 }

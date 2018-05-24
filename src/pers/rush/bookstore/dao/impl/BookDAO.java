@@ -27,9 +27,9 @@ public class BookDAO extends HibernateDaoSupport implements IBookDAO{
 	public Book findBook(Integer bookid) {
 		return (Book)factory.getCurrentSession().get(Book.class, bookid);
 	}
-	public List<?> getRequiredBookByName(String name) {
+	public List<Book> getRequiredBookByName(String name) {
 		try {
-			List<?> books = this.getHibernateTemplate().find("from Book where bookname like '%" + name + "%'");
+			List<Book> books = this.getHibernateTemplate().find("from Book where bookname like '%" + name + "%'");
 			return books;
 		} catch (Exception e) {
 			e.printStackTrace();
